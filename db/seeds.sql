@@ -3,3 +3,4 @@ INSERT INTO burgers(burger_name, devoured)
     ('Flora-Burger', false),
     ('Bama-Burger', false);
     
+    select * from burgers;
