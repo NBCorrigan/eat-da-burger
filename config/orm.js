@@ -3,9 +3,9 @@ var connection = require('../config/connection.js');
 
 var orm = {
 
-    selectAll: function (tableInput, cb) {
-        var queryString = "SELECT * FROM ??";
-        connection.query(queryString, [tableInput], function (err, result) {
+    selectAll: function (cb) {
+        var queryString = "SELECT * FROM burgers";
+        connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
             }
@@ -13,9 +13,9 @@ var orm = {
         });
     },
 
-    insertOne: function (table, cols, vals, cb) {
-        var queryString = "INSERT INTO ?? (??, ??, ??) VALUES(?, ?, ?)";
-        connection.query(queryString, [table, cols, vals], function (err, result) {
+    insertOne: function (burger, cb) {
+        var queryString = "INSERT INTO burgers SET ?";
+        connection.query(queryString, burger, function (err, result) {
             if (err) {
                 throw err;
             }
@@ -23,10 +23,10 @@ var orm = {
         });
     },
 
-    updateOne: function (table, objCol, condition, val) {
-        var queryString = "UPDATE ?? SET ?? WHERE ?? = ?";
+    updateOne: function (condition, id) {
+        var queryString = "UPDATE burgers SET devoured = ? WHERE id = ?";
 
-        connection.query(queryString, [table, objCol, condition, val], function (err, result) {
+        connection.query(queryString, [condition, id], function (err, result) {
             if (err) {
                 throw err;
             }
